@@ -1,0 +1,12 @@
+services:
+
+  broker-services:
+    build:
+      context: ./../broker-service #defining source for the build 
+      dockerfile: ./../broker-service/broker-service.dockerfile
+    restart: always #specifing to restart the container whenever there is an error or crash 
+    ports:
+      - "8080:80"
+    deploy:
+      mode: replicated 
+      replicas: 1

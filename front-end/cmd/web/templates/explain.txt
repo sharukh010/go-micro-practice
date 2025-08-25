@@ -1,0 +1,19 @@
+########################## UNDERSTANDING THE TEMPLATE FOLDER ###############
+What are we are doing? 
+.gohtml files are html template files + go template syntax 
+
+we have divided the front end into parts 
+- base -> defined base template that combines all the components into one page
+- header -> defined header html template 
+- content -> defined content html template 
+- footer  -> defined footer html template 
+
+-> What does "{{template "header" .}}" means 
+- This means we are using the header template. 
+- The "." after the template name means that whatever the data parent reciving send it to the header template 
+
+-> Why we have mentioned "{{template "base" .}}" in "test.page.gohtml"?
+- This is to tell that while rendering the "test.page.gohtml" use the "base" template 
+
+
+################################ UNDERSTANDING THE MAIN.GO ############
