@@ -1,6 +1,6 @@
-package main 
+package main
 
-import(
+import (
 	"errors"
 	"fmt"
 	"net/http"
@@ -12,7 +12,7 @@ func (app *Config) Authenticate(w http.ResponseWriter,r *http.Request){
 		Password string `json:"password"`
 	}
 
-	err := app.readJSON(w,r,requestPayload)
+	err := app.readJSON(w,r,&requestPayload)
 	if err != nil {
 		app.errorJSON(w,err,http.StatusBadRequest)
 		return 
@@ -24,8 +24,7 @@ func (app *Config) Authenticate(w http.ResponseWriter,r *http.Request){
 		app.errorJSON(w,errors.New("invalid credentials"),http.StatusBadRequest)
 		return 
 	}
-
-	valid,err := app.Models.User.PasswordMatches(requestPayload.Password)
+	valid,err := user.PasswordMatches(requestPayload.Password)
 	if err != nil || !valid  {
 		app.errorJSON(w,errors.New("invalid credentials"),http.StatusBadRequest)
 		return 
